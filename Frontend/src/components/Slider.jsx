@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 import { mobile } from '../Responsive'
 
 const Container = styled.div`
-    width: 100%;
-    height: 100vh;
+    //width: 100%;
+    //max-width: 100vw;
+    height: 50vh;
     display: flex;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     ${mobile({ display: "none" })}
 `;
 
@@ -52,31 +54,32 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-    height: 80%;
+    height: 50%;
+    width: 100%;
 `;
 
-const InfoContainer = styled.div`
-    flex: 1;
-    padding: 50px;
-`;
+// const InfoContainer = styled.div`
+//     flex: 1;
+//     padding: 50px;
+// `;
 
-const Title = styled.h1`
-    font-size: 70px;
-`;
+// const Title = styled.h1`
+//     font-size: 70px;
+// `;
 
-const Desc = styled.p`
-    margin: 50px 0px;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 1.5px;
-`;
+// const Desc = styled.p`
+//     margin: 50px 0px;
+//     font-size: 20px;
+//     font-weight: 500;
+//     letter-spacing: 1.5px;
+// `;
 
-const Button = styled.button`
-    padding: 10px;
-    font-size: 20px;
-    background-color: transparent;
-    cursor: pointer;
-`;
+// const Button = styled.button`
+//     padding: 10px;
+//     font-size: 20px;
+//     background-color: transparent;
+//     cursor: pointer;
+// `;
 
 const Slider = () => {
 
@@ -102,9 +105,9 @@ const Slider = () => {
     const handleClick = (direction) => {
 
         if (direction === "left") {
-            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 9);
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
         } else {
-            setSlideIndex(slideIndex < 9 ? slideIndex + 1 : 0);
+            setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
         }
     };
 
@@ -114,15 +117,16 @@ const Slider = () => {
             <Arrow direction="left" onClick={() => handleClick("left")}>
                 <ArrowLeftOutlined />
             </Arrow>
-            <Wrapper slideIndex={slideIndex}>
-                {
-                    data.map((item) => {
-                        return (
-                            <Slide bg={item.bg} key={item.slideIndex}>
-                                <ImgContainer>
-                                    <Image src={item.img} />
-                                </ImgContainer>
-                                <InfoContainer>
+            <Link to={"/products"}>
+                <Wrapper slideIndex={slideIndex}>
+                    {
+                        data.map((item) => {
+                            return (
+                                <Slide bg={item.bg} key={item.slideIndex}>
+                                    <ImgContainer>
+                                        <Image src={item.img} />
+                                    </ImgContainer>
+                                    {/* <InfoContainer>
                                     <Title>{item.title}</Title>
                                     <Desc>{item.desc}</Desc>
                                     <Button>
@@ -130,14 +134,15 @@ const Slider = () => {
                                             XEM NGAY
                                         </Link>
                                     </Button>
-                                </InfoContainer>
-                            </Slide>
-                        )
-                    })
-                }
+                                </InfoContainer> */}
+                                </Slide>
+                            )
+                        })
+                    }
 
 
-            </Wrapper>
+                </Wrapper>
+            </Link>
             <Arrow direction="right" onClick={() => handleClick("right")}>
                 <ArrowRightOutlined />
             </Arrow>

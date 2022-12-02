@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 const Container = styled.div`
-    padding: 20px;
+    //padding: 2px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
